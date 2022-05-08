@@ -5,9 +5,9 @@ function a = proximal_coef(f, x1, y1, x2, y2)
     % =========================================================================
     
     % TODO: Calculeaza matricea A.
-    
+    A = [1, x1, y1, x1 * y1; 1, x1, y2, x1 * y2; 1, x2, y1, x2 * y1; 1, x2, y2, x2 * y2];
     % TODO: Calculeaza vectorul b.    
-    
+    b = [f(A(1, 1)); f(A(1, 2)); f(A(2, 1)); f(A(2, 2))];
     % TODO: Calculeaza coeficientii.
-    
-endfunction
+    a = A\b;
+end

@@ -20,31 +20,40 @@ function R = proximal_rotate(I, rotation_angle)
     % De aceea, trebuie lucrat cu indici în intervalul [0, n - 1].
 
     % TODO: Calculeaza cosinus si sinus de rotation_angle.
-
+    c = cos(rotation_angle);
+    s = sin(rotation_angle);
     % TODO: Initializeaza matricea finala.
-
+    R = matrix(m, n);
     % TODO: Calculeaza matricea de transformare.
-
+    T_rot = [c, -s; s, c];
     % TODO: Inverseaza matricea de transformare, FOLOSIND doar functii predefinite!
-
+    T_rot_inv = inv(T_rot);
     % Se parcurge fiecare pixel din imagine.
     for y = 0 : m - 1
         for x = 0 : n - 1
             % TODO: Aplica transformarea inversa asupra (x, y) si calculeaza x_p si y_p
             % din spatiul imaginii initiale.
-
+            old_coords = T_rot_inv * [x; y];
             % TODO: Trece (xp, yp) din sistemul de coordonate [0, n - 1] în
             % sistemul de coordonate [1, n] pentru a aplica interpolarea.
-
+            old_coords = old_coords + [1; 1];
             % TODO: Daca xp sau yp se afla în exteriorul imaginii,
             % se pune un pixel negru si se trece mai departe.
-
+            if old_coords(0) < 1 || old_coords(0) >= n
+                
+            end
+            if old_coords(1) < 1 || old_coords(1) >= n
+                
+            end
             % TODO: Afla punctele ce înconjoara(xp, yp).
-
+            x1 = floor(old_coords(0));
+            x2 = ceil(old_coords(0));
+            y1 = floor(old_coords(1));
+            y2 = ceil(old_coords(1));
             % TODO: Calculeaza coeficientii de interpolare notati cu a
             % Obs: Se poate folosi o functie auxiliara în care sau se calculeze coeficientii,
             % conform formulei.
-
+            a = proximal_coef(@(x) , x1, y1, x2, y2);
             % TODO: Calculeaza valoarea interpolata a pixelului (x, y).
         
         endfor
