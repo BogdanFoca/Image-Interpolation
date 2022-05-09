@@ -8,12 +8,15 @@ function out = proximal_2x2(f, STEP = 0.1)
     % ===================================================================================
     
     % TODO: Defineste coordonatele x si y ale punctelor intermediare.
-    xs = 1.1:0.1:1.9;
-    ys = 1.1:0.1:1.9;
+    xs = 1.1:STEP:1.9;
+    ys = 1.1:STEP:1.9;
     % Se afl? num?rul de puncte.
     n = length(x_int);
     % TODO: Cele 4 puncte încadratoare vor fi aceleasi pentru toate punctele din interior.
-    
+    x1 = 1;
+    x2 = 2;
+    y1 = 1;
+    y2 = 2;
     % TODO: Initializeaza rezultatul cu o matrice nula n x n.
     out = matrix(n, n);
   
@@ -23,18 +26,10 @@ function out = proximal_2x2(f, STEP = 0.1)
             % TODO: Afla cel mai apropiat pixel din imaginea initiala.
             xap = 0;
             yap = 0;
-            if(xs(i) < 1.5)
-                xap = 1;
-            else
-                xap = 2;
-            end
-            if(ys(j) < 1.5)
-                yap = 1;
-            else
-                yap = 2;
-            end
+            xap = round(x);
+            yap = round(y);
             % TODO: Calculeaza pixelul din imaginea finala.
-            out(xs(i), ys(i)) = f(xap, yap);
+            out(i, j) = f(xap, yap);
         end
     end
 

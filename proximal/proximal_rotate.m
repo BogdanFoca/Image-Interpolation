@@ -56,9 +56,9 @@ function R = proximal_rotate(I, rotation_angle)
             a = proximal_coef(@(x) , x1, y1, x2, y2);
             % TODO: Calculeaza valoarea interpolata a pixelului (x, y).
         
-        endfor
-    endfor
+        end
+    end
 
     % TODO: Transforma matricea rezultata în uint8 pentru a fi o imagine valida.
-    
-endfunction
+    R = uint8(R);
+end

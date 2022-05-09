@@ -4,5 +4,5 @@ function r = fxy(f, x, y)
     % =========================================================================
     
     % TODO: Calculeaza derivata.
-    
-endfunction
+    r = 0.5 * (fy(f, x + 1, y) - fy(f, x - 1, y));
+end

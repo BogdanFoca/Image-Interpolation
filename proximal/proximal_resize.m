@@ -24,8 +24,8 @@ function R = proximal_resize(I, p, q)
     % Obs: Daca se lucreaza cu indici din intervalul [0, n - 1], ultimul pixel
     % al imaginii se va deplasa de la (m - 1, n - 1) la (p, q).
     % s_x nu va fi q ./ n
-    sx = q / n;
-    sy = p / m;
+    sx = (q - 1) / (n - 1);
+    sy = (p - 1) / (m - 1);
     % TODO: Defineste matricea de transformare pentru redimensionare.
     T = [sx, 0; 0, sy];
     % TODO: Inverseaza matricea de transformare, FARA a folosi functii predefinite!
@@ -42,11 +42,10 @@ function R = proximal_resize(I, p, q)
             % TODO: Calculeaza cel mai apropiat pixel.
             closestPixel = round(new_coords);
             % TODO: Calculeaza valoarea pixelului din imaginea finala.
-            R(x, y) = I(closestPixel);
+            R(y + 1, x + 1) = I(closestPixel);
         end
     end
 
     % TODO: Transforma matricea rezultata în uint8 pentru a fi o imagine valida.
-    d = linspace(min(R(:)),max(R(:)),256);
-    R = uint8(arrayfun(@(x) find(abs(d(:)-x)==min(abs(d(:)-x))),R));
+    R = uint8(R);
 end
