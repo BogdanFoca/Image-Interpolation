@@ -11,9 +11,9 @@ function out = proximal_2x2_RGB(img, STEP = 0.1)
     % TODO: Extrage canalul albastru al imaginii.
     blueChannel = img(:,:,3);
     % TODO: Aplic? functia proximal pe cele 3 canale ale imaginii.
-    redChannel = proximal_2x2(redChannel);
-    greenChannel = proximal_2x2(greenChannel);
-    blueChannel = proximal_2x2(blueChannel);
-    % TODO: Formeaza imaginea finala concatenând cele 3 canale de culori.
+    redChannel = proximal_2x2(redChannel, STEP);
+    greenChannel = proximal_2x2(greenChannel, STEP);
+    blueChannel = proximal_2x2(blueChannel, STEP);
+    % TODO: Formeaza imaginea finala concatenï¿½nd cele 3 canale de culori.
     out = cat(3, redChannel, greenChannel, blueChannel);
-end
+endfunction

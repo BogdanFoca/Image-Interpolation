@@ -13,4 +13,4 @@ function A = bicubic_coef(f, Ix, Iy, Ixy, x1, y1, x2, y2)
     third = double(third);
     % TODO: Calculeaz? matricea final?.
     A = first * second * third;
-end
+endfunction

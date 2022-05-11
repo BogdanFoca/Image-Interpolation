@@ -1,7 +1,7 @@
 function R = proximal_resize(I, p, q)
     % =========================================================================
     % Se scaleaza imaginea folosind algoritmul de Interpolare Proximala.
-    % Transforma imaginea I din dimensiune m x n în dimensiune p x q.
+    % Transforma imaginea I din dimensiune m x n ï¿½n dimensiune p x q.
     % =========================================================================
     [m n nr_colors] = size(I);
 
@@ -9,16 +9,16 @@ function R = proximal_resize(I, p, q)
     if nr_colors > 1
         R = -1;
         return
-    end
+    endif
 
     % TODO: Initializeaza matricea finala drept o matrice nula.
     R = matrix(p, q);
     % Obs:
-    % Atunci când se aplica o scalare, punctul (0, 0) al imaginii nu se va deplasa.
-    % În Octave, pixelii imaginilor sunt indexati de la 1 la n.
-    % Daca se lucreaza cu indici de la 1 la n si se înmultesc x si y cu s_x respectiv s_y,
+    % Atunci cï¿½nd se aplica o scalare, punctul (0, 0) al imaginii nu se va deplasa.
+    % ï¿½n Octave, pixelii imaginilor sunt indexati de la 1 la n.
+    % Daca se lucreaza cu indici de la 1 la n si se ï¿½nmultesc x si y cu s_x respectiv s_y,
     % atunci originea imaginii se va deplasa de la (1, 1) la (sx, sy)!
-    % De aceea, trebuie lucrat cu indici în intervalul [0, n - 1].
+    % De aceea, trebuie lucrat cu indici ï¿½n intervalul [0, n - 1].
 
     % TODO: Calculeaza factorii de scalare.
     % Obs: Daca se lucreaza cu indici din intervalul [0, n - 1], ultimul pixel
@@ -43,9 +43,9 @@ function R = proximal_resize(I, p, q)
             closestPixel = round(new_coords);
             % TODO: Calculeaza valoarea pixelului din imaginea finala.
             R(y + 1, x + 1) = I(closestPixel);
-        end
-    end
+        endfor
+    endfor
 
-    % TODO: Transforma matricea rezultata în uint8 pentru a fi o imagine valida.
+    % TODO: Transforma matricea rezultata ï¿½n uint8 pentru a fi o imagine valida.
     R = uint8(R);
-end
+endfunction

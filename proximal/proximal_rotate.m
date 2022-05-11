@@ -1,11 +1,11 @@
 function R = proximal_rotate(I, rotation_angle)
     % =========================================================================
     % Roteste imaginea alb-negru I de dimensiune m x n cu unghiul rotation_angle,
-    % aplicând Interpolare Proximala.
-    % rotation_angle este exprimat în radiani.
+    % aplicï¿½nd Interpolare Proximala.
+    % rotation_angle este exprimat ï¿½n radiani.
     % =========================================================================
     [m n nr_colors] = size(I);
-    
+
     % Se converteste imaginea de intrare la alb-negru, daca este cazul.
     if nr_colors > 1
         R = -1;
@@ -13,11 +13,11 @@ function R = proximal_rotate(I, rotation_angle)
     endif
 
     % Obs:
-    % Atunci când se aplica o scalare, punctul (0, 0) al imaginii nu se va deplasa.
-    % În Octave, pixelii imaginilor sunt indexati de la 1 la n.
-    % Daca se lucreaza în indici de la 1 la n si se inmultesc x si y cu s_x respectiv s_y,
+    % Atunci cï¿½nd se aplica o scalare, punctul (0, 0) al imaginii nu se va deplasa.
+    % ï¿½n Octave, pixelii imaginilor sunt indexati de la 1 la n.
+    % Daca se lucreaza ï¿½n indici de la 1 la n si se inmultesc x si y cu s_x respectiv s_y,
     % atunci originea imaginii se va deplasa de la (1, 1) la (sx, sy)!
-    % De aceea, trebuie lucrat cu indici în intervalul [0, n - 1].
+    % De aceea, trebuie lucrat cu indici ï¿½n intervalul [0, n - 1].
 
     % TODO: Calculeaza cosinus si sinus de rotation_angle.
     c = cos(rotation_angle);
@@ -34,33 +34,33 @@ function R = proximal_rotate(I, rotation_angle)
             % TODO: Aplica transformarea inversa asupra (x, y) si calculeaza x_p si y_p
             % din spatiul imaginii initiale.
             old_coords = T_rot_inv * [x; y];
-            % TODO: Trece (xp, yp) din sistemul de coordonate [0, n - 1] în
+            % TODO: Trece (xp, yp) din sistemul de coordonate [0, n - 1] ï¿½n
             % sistemul de coordonate [1, n] pentru a aplica interpolarea.
             old_coords = old_coords + [1; 1];
-            % TODO: Daca xp sau yp se afla în exteriorul imaginii,
+            % TODO: Daca xp sau yp se afla ï¿½n exteriorul imaginii,
             % se pune un pixel negru si se trece mai departe.
-            if old_coords(0) < 1 || old_coords(0) >= n
-                R(y+1, x+1) = 0;
-                continue;
-            end
             if old_coords(1) < 1 || old_coords(1) >= n
                 R(y+1, x+1) = 0;
                 continue;
-            end
-            % TODO: Afla punctele ce înconjoara(xp, yp).
+            endif
+            if old_coords(2) < 1 || old_coords(2) >= n
+                R(y+1, x+1) = 0;
+                continue;
+            endif
+            % TODO: Afla punctele ce ï¿½nconjoara(xp, yp).
             x1 = floor(old_coords(0));
             x2 = ceil(old_coords(0));
             y1 = floor(old_coords(1));
             y2 = ceil(old_coords(1));
             % TODO: Calculeaza coeficientii de interpolare notati cu a
-            % Obs: Se poate folosi o functie auxiliara în care sau se calculeze coeficientii,
+            % Obs: Se poate folosi o functie auxiliara ï¿½n care sau se calculeze coeficientii,
             % conform formulei.
-            a = proximal_coef(@(x) , x1, y1, x2, y2);
+            a = proximal_coef(I , x1, y1, x2, y2);
             % TODO: Calculeaza valoarea interpolata a pixelului (x, y).
-        
-        end
-    end
+            R(y+1, x+1) = a(1) + a(2) * x + a(3) * y + a(4) * x * y;
+        endfor
+    endfor
 
-    % TODO: Transforma matricea rezultata în uint8 pentru a fi o imagine valida.
+    % TODO: Transforma matricea rezultata ï¿½n uint8 pentru a fi o imagine valida.
     R = uint8(R);
-end
+endfunction

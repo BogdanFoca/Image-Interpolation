@@ -12,7 +12,7 @@ function R = bicubic_resize(I, p, q)
     if nr_colors > 1
         R = -1;
         return
-    end
+    endif
 
     % Obs:
     % Atunci cand se aplica o scalare, punctul (0, 0) al imaginii nu se va deplasa.
@@ -50,10 +50,10 @@ function R = bicubic_resize(I, p, q)
             y2 = ceil(y);
             if y2 > m
                 y2 = y1;
-            end
+            endif
             if x2 > n
                 x2 = x1;
-            end
+            endif
             % TODO: Calculeaza coeficientii de interpolare A.
             A = bicubic_coef(I, Ix, Iy, Ixy, x1, y1, x2, y2);
             % TODO: Trece coordonatele (xp, yp) in patratul unitate, scazand (x1, y1).
@@ -62,12 +62,12 @@ function R = bicubic_resize(I, p, q)
             % Obs: Pentru scrierea in imagine, x si y sunt in coordonate de
             % la 0 la n - 1 si trebuie aduse in coordonate de la 1 la n.
             R(y + 1, x + 1) = [1 old_coords(1) old_coords(1)^2 old_coords(1)^3] * A * [1; old_coords(2); old_coords(2)^2; old_coords(2)^3];
-        end
-    end
+        endfor
+    endfor
 
-    % TODO: Transforma matricea rezultata în uint8 pentru a fi o imagine valida.
+    % TODO: Transforma matricea rezultata ï¿½n uint8 pentru a fi o imagine valida.
     R = uint8(R);
-end
+endfunction
 
 
 

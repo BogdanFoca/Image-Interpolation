@@ -1,6 +1,6 @@
 function out = proximal_resize_RGB(img, p, q)
     % =========================================================================
-    % Redimensioneaza imaginea img astfel încât aceasta save fie de dimensiune p x q.
+    % Redimensioneaza imaginea img astfel ï¿½ncï¿½t aceasta save fie de dimensiune p x q.
     % Imaginea img este colorata.
     % =========================================================================
 
@@ -14,6 +14,6 @@ function out = proximal_resize_RGB(img, p, q)
     redChannel = proximal_resize(redChannel);
     greenChannel = proximal_resize(greenChannel);
     blueChannel = proximal_resize(blueChannel);
-    % TODO: Formeaza imaginea finala concatenând cele 3 canale de culori.
+    % TODO: Formeaza imaginea finala concatenï¿½nd cele 3 canale de culori.
     out = cat(3, redChannel, greenChannel, blueChannel);
-end
+endfunction
