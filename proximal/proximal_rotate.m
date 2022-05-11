@@ -40,10 +40,12 @@ function R = proximal_rotate(I, rotation_angle)
             % TODO: Daca xp sau yp se afla în exteriorul imaginii,
             % se pune un pixel negru si se trece mai departe.
             if old_coords(0) < 1 || old_coords(0) >= n
-                
+                R(y+1, x+1) = 0;
+                continue;
             end
             if old_coords(1) < 1 || old_coords(1) >= n
-                
+                R(y+1, x+1) = 0;
+                continue;
             end
             % TODO: Afla punctele ce înconjoara(xp, yp).
             x1 = floor(old_coords(0));
