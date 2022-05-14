@@ -21,7 +21,7 @@ function R = bicubic_resize(I, p, q)
     % respectiv s_y, atunci originea imaginii se va deplasa de la (1, 1) la (sx, sy)!
     % De aceea, trebuie lucrat cu indici in intervalul [0, n - 1]!
 
-
+    I = double(I);
     % TODO: Calculeaza factorii de scalare
     % Obs: Daca se lucreaza cu indici in intervalul [0, n - 1], ultimul pixel
     % al imaginii se va deplasa de la (m - 1, n - 1) la (p, q).
@@ -44,10 +44,10 @@ function R = bicubic_resize(I, p, q)
             % sistemul de coordonate 1, n pentru a aplica interpolarea.
             old_coords = old_coords + [1; 1];
             % TODO: Gaseste cele 4 puncte ce inconjoara punctul x, y
-            x1 = floor(x);
-            x2 = ceil(x);
-            y1 = floor(y);
-            y2 = ceil(y);
+            x1 = floor(old_coords(1));
+            x2 = ceil(old_coords(1));
+            y1 = floor(old_coords(2));
+            y2 = ceil(old_coords(2));
             if y2 > m
                 y2 = y1;
             endif

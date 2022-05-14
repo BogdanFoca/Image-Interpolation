@@ -11,9 +11,9 @@ function out = proximal_resize_RGB(img, p, q)
     % TODO: Extrage canalul albastru al imaginii.
     blueChannel = img(:,:,3);
     % TODO: Aplica functia proximal pe cele 3 canale ale imaginii.
-    redChannel = proximal_resize(redChannel);
-    greenChannel = proximal_resize(greenChannel);
-    blueChannel = proximal_resize(blueChannel);
+    redChannel = proximal_resize(redChannel, p, q);
+    greenChannel = proximal_resize(greenChannel, p, q);
+    blueChannel = proximal_resize(blueChannel, p, q);
     % TODO: Formeaza imaginea finala concaten�nd cele 3 canale de culori.
     out = cat(3, redChannel, greenChannel, blueChannel);
 endfunction

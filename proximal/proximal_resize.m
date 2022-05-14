@@ -10,9 +10,11 @@ function R = proximal_resize(I, p, q)
         R = -1;
         return
     endif
+    
+    I = double(I);
 
     % TODO: Initializeaza matricea finala drept o matrice nula.
-    R = matrix(p, q);
+    R = zeros(p, q);
     % Obs:
     % Atunci c�nd se aplica o scalare, punctul (0, 0) al imaginii nu se va deplasa.
     % �n Octave, pixelii imaginilor sunt indexati de la 1 la n.
@@ -40,9 +42,10 @@ function R = proximal_resize(I, p, q)
             % sistemul de coordonate [1, n] pentru a aplica interpolarea.
             new_coords = new_coords + [1; 1];
             % TODO: Calculeaza cel mai apropiat pixel.
-            closestPixel = round(new_coords);
+            x2 = min(round(new_coords(1)), n);
+            y2 = min(round(new_coords(2)), m);
             % TODO: Calculeaza valoarea pixelului din imaginea finala.
-            R(y + 1, x + 1) = I(closestPixel);
+            R(y + 1, x + 1) = I(y2, x2);
         endfor
     endfor
 
