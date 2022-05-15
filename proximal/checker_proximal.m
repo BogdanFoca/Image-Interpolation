@@ -1,6 +1,6 @@
 function [score] = checker_proximal()
     PROXIMAL_points = 30;
-
+    
     [PROXIMAL_4point, PROXIMAL_4point_max] = test("checker_props/checker_proximal_4points");
     printf("Interpolate 4 points: %d / %d teste trecute.\n", PROXIMAL_4point, PROXIMAL_4point_max);
     

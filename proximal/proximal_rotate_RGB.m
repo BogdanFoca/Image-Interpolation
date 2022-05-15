@@ -10,9 +10,9 @@ function out = proximal_rotate_RGB(img, rotation_angle)
     % TODO: Extrage canalul albastru al imaginii.
     blueChannel = img(:,:,3);
     % TODO: Aplic? functia proximal pe cele 3 canale ale imaginii.
-    redChannel = proximal_rotate(redChannel);
-    greenChannel = proximal_rotate(greenChannel);
-    blueChannel = proximal_rotate(blueChannel);
+    redChannel = proximal_rotate(redChannel, rotation_angle);
+    greenChannel = proximal_rotate(greenChannel, rotation_angle);
+    blueChannel = proximal_rotate(blueChannel, rotation_angle);
     % TODO: Formeaza imaginea finala concaten�nd cele 3 canale de culori.
     out = cat(3, redChannel, greenChannel, blueChannel);
 endfunction

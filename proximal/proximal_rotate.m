@@ -23,7 +23,7 @@ function R = proximal_rotate(I, rotation_angle)
     c = cos(rotation_angle);
     s = sin(rotation_angle);
     % TODO: Initializeaza matricea finala.
-    R = matrix(m, n);
+    R = zeros(m, n);
     % TODO: Calculeaza matricea de transformare.
     T_rot = [c, -s; s, c];
     % TODO: Inverseaza matricea de transformare, FOLOSIND doar functii predefinite!
@@ -39,25 +39,31 @@ function R = proximal_rotate(I, rotation_angle)
             old_coords = old_coords + [1; 1];
             % TODO: Daca xp sau yp se afla �n exteriorul imaginii,
             % se pune un pixel negru si se trece mai departe.
-            if old_coords(1) < 1 || old_coords(1) >= n
+            if old_coords(1) < 1 || old_coords(1) > n
                 R(y+1, x+1) = 0;
                 continue;
             endif
-            if old_coords(2) < 1 || old_coords(2) >= n
+            if old_coords(2) < 1 || old_coords(2) > m
                 R(y+1, x+1) = 0;
                 continue;
             endif
             % TODO: Afla punctele ce �nconjoara(xp, yp).
-            x1 = floor(old_coords(0));
-            x2 = ceil(old_coords(0));
-            y1 = floor(old_coords(1));
-            y2 = ceil(old_coords(1));
+            x1 = floor(old_coords(1));
+            x2 = ceil(old_coords(1));
+            y1 = floor(old_coords(2));
+            y2 = ceil(old_coords(2));
+            if y2 > m
+                y2 = y1;
+            endif
+            if x2 > n
+                x2 = x1;
+            endif
             % TODO: Calculeaza coeficientii de interpolare notati cu a
             % Obs: Se poate folosi o functie auxiliara �n care sau se calculeze coeficientii,
             % conform formulei.
             a = proximal_coef(I , x1, y1, x2, y2);
             % TODO: Calculeaza valoarea interpolata a pixelului (x, y).
-            R(y+1, x+1) = a(1) + a(2) * x + a(3) * y + a(4) * x * y;
+            R(y+1, x+1) = a(1) + a(2) * old_coords(1) + a(3) * old_coords(2) + a(4) * old_coords(1) * old_coords(2);
         endfor
     endfor
 
