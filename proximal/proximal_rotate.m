@@ -48,10 +48,10 @@ function R = proximal_rotate(I, rotation_angle)
                 continue;
             endif
             % TODO: Afla punctele ce �nconjoara(xp, yp).
-            x1 = floor(old_coords(1));
-            x2 = ceil(old_coords(1));
-            y1 = floor(old_coords(2));
-            y2 = ceil(old_coords(2));
+            x1 = double(floor(old_coords(1)));
+            x2 = double(ceil(old_coords(1)));
+            y1 = double(floor(old_coords(2)));
+            y2 = double(ceil(old_coords(2)));
             if y2 > m
                 y2 = y1;
             endif
