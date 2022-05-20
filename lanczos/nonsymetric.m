@@ -8,7 +8,10 @@ function out = nonsymetric(A, V, W, m)
     alpha(j) = W(j)'*Vu(j+1);
     Vu(j+1)=Vu(j+1)-Vs(j)*alpha(j);
     Wu(j+1)=Wu(j+1)-Ws(j)*alpha(j)';
-    [QV, RV]=qr(Vu(j+1));
-    [QW, RW]=qr(Wu(j+1));
+    
+    Beta(j+1) = Vu(j+1)/Vs(j+1);
+    DeltaT(j+1)=Wu(j+1)/Ws(j+1);
+    
+    
   endfor
 endfunction
