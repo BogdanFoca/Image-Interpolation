@@ -12,6 +12,7 @@ function out = nonsymetric(A, V, W, m)
     Beta(j+1) = Vu(j+1)/Vs(j+1);
     DeltaT(j+1)=Wu(j+1)/Ws(j+1);
     
+    [U, S, V] = svd(W(j+1)' * V(j+1));
     
   endfor
 endfunction
