@@ -1,0 +1,51 @@
+#Interpolare
+
+## Interpolare Proximala
+
+### proximal_2x2
+
+Se definesc punctele intre 1 si 2 cu diferenta de 0.1 intre ele.
+
+Pentru a afla punctul cel mai apropiat, se rotunjesc coordonatele. Pixelul va primi valoarea de la coordonatele rotunjite.
+
+### proximal_resize
+
+Functia se converteste in double pentru precizie.
+
+Se calculeaza factorii de scalare ca fiind raportul dintre marimea de dupa scalare si marimea initiala. Se calculeaza matricea de transformare. Forma inversei este calculata de mana si introdusa intr-o variabila. Se calculeaza coordonatele anterioare.
+
+Se calculeaza cel mai apropiat pixel prin rotunjire. Valoarea pixelului va fi valoarea pixelului cel mai apropiat.
+
+### proximal_rotate
+
+Coeficientii pentru rotire se afla prin rezolvarea ecuatiei Aa = b, a = A / b.
+
+Se compune matricea de rotatie din cosinusurile si sinusurile unghiului. Se foloseste functia matlab inv pentru a se calcula inversul ei. Se calculeaza coordonatele anterioare.
+
+Se atribuie valoarea negru pentru pixelii ce ies din marime. Cel mai apropiat pixel pentru cei ramasi se calculeaza prin rotunjire in sus sau in jos. Se calculeaza interpolarea folosind functia de interpolare cu coeficientii calculati.
+
+### proximal_RGB
+
+Pentru fiecare dintre functiile RGB, se descompune imaginea in cele trei canale, se aplica functia aferenta pe fiecare dintre ele si dupa se concateneaza canalele.
+
+## Interpolare bicubica
+
+### Aproximare derivate
+
+Derivatele au fost aproximate ca fiind jumatatea diferentei dintre punctul urmator si cel anterior, adica in loc de limita, folosindu-se diferente dintre valori cunoscute.
+
+### bicubic_resize
+
+e calculeaza factorii de scalare ca fiind raportul dintre marimea de dupa scalare si marimea initiala. Cele 4 puncte ce inconjoara pixelul se calculeaza prin rotunjirea coordonatelor in sus si in jos. Se calculeaza coeficientii bicubici si se aplica functia pe valoarea pixelului.
+
+Coeficientii se obtin prin inmultirea unor matrici.
+
+## Interpolare Lanczos
+
+### Nonsimetric
+
+### Bloc rational
+
+### Bloc rational adaptiv
+
+Se obtin factorii V si W din algoritmul Bloc Rational. Se calculeaza noii A, B si C si matricea de transfer. Se repeta procesul pana cand eroarea dintre matricele de transfer este destul de mica.
