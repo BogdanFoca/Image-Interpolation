@@ -13,6 +13,12 @@ function [A, B, C] = AORBL(A, B, C, s1, s2, tol)
     
     old_H = new_H;
     
+    for i=0:l
+      for j=0:l
+        new_H = old_H - C * inv((old_H(i, j) * eye(l) - A))*(V*W' * eye(l))*A*V()
+      endfor
+    endfor
+    
     eps = norm(new_H - old_H, Inf);
     m = m + 1;
   endwhile
