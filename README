@@ -36,7 +36,7 @@ Derivatele au fost aproximate ca fiind jumatatea diferentei dintre punctul urmat
 
 ### bicubic_resize
 
-e calculeaza factorii de scalare ca fiind raportul dintre marimea de dupa scalare si marimea initiala. Cele 4 puncte ce inconjoara pixelul se calculeaza prin rotunjirea coordonatelor in sus si in jos. Se calculeaza coeficientii bicubici si se aplica functia pe valoarea pixelului.
+Se calculeaza factorii de scalare ca fiind raportul dintre marimea de dupa scalare si marimea initiala. Cele 4 puncte ce inconjoara pixelul se calculeaza prin rotunjirea coordonatelor in sus si in jos. Se calculeaza coeficientii bicubici si se aplica functia pe valoarea pixelului.
 
 Coeficientii se obtin prin inmultirea unor matrici.
 
@@ -44,7 +44,17 @@ Coeficientii se obtin prin inmultirea unor matrici.
 
 ### Nonsimetric
 
+Se calculeaza descompunerea QR folosind functia qr din matlab. Se dau valori vectorilor conform formulelor.
+
+In for se calculeaza valorile pentru elementele vectorilor. Beta si delta se afla rezolvand ecuatia din formule.
+
+Singular value decomposition se calculeaza folosind functia svd din matlab si cu termenii rezultati se compun valorile vectorilor.
+
 ### Bloc rational
+
+Se dau valori pentru S si R ca in formule. H(1,0) este ales 1, deci V = S. W este ales ca fiind Ip / V1 transpus. Din asta reiese ca G(1, 0) = R / W ca sa respecte formula.
+
+In for se verifica daca sigma este infinit. Se aplica toate formulele descrise. Singular value decomposition se face cu functia svd din matlab. S si R nu sunt stocate drept vectori, deoarece ne intereseaza doar valoarea lor la momentul curent.
 
 ### Bloc rational adaptiv
 

@@ -15,7 +15,8 @@ function [A, B, C] = AORBL(A, B, C, s1, s2, tol)
     
     for i=0:l
       for j=0:l
-        new_H = old_H - C * inv((old_H(i, j) * eye(l) - A))*(V*W' * eye(l))*A*V()
+        %aici trebuie calculat new_H, dar nu imi iese
+        %new_H = old_H - C * inv((old_H(i, j) * eye(l) - A))*(V*W' * eye(l))*A*V()
       endfor
     endfor
     
