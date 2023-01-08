@@ -1,4 +1,6 @@
-# Image Interpolation
+# Image Interpolation - Numerical Methods - Project 2
+
+A pdf with the detailed description can be found in the repo.
 
 ## Proximal Interpolation
 
